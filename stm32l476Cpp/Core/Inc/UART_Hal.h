@@ -15,11 +15,11 @@
 #include "ISR_Hal.h"
 #include "CircularBuffer.h"
 //-------defines------------
-#define UART_COUNT (1)
-#define RX_SIZE_BUFFER (64)
+#define UART_COUNT		(1)
+#define RX_SIZE_BUFFER	(64)
 
 #ifndef UART_ISR_MAX
-  #define UART_ISR_MAX (2)
+  #define UART_ISR_MAX	(2)
 #endif
 
 // ------------- UartBase -------------
@@ -31,15 +31,15 @@ public:
 	void init();
 	HAL_StatusTypeDef write(uint8_t* pData, uint16_t Size, uint32_t Timeout =1000);
 protected:
-	USART_TypeDef* _Instance;
-	UART_HandleTypeDef* _huart;
+	USART_TypeDef* _Instance;			// UART instance (USART1, USART2, etc.)
+	UART_HandleTypeDef* _huart;			// HAL UART handle
 private:
 	static bool  isInit[UART_COUNT];
 };
 
 
 
-// ------------- UartIT -------------
+// ---------- Interrupt-based UART (non-blocking RX/TX) ----------
 
 
 class UartIT: public UartBase{
@@ -52,14 +52,16 @@ public:
 	uint16_t read(uint8_t *pData, uint16_t Size);
 	bool is_tx_done(void);
 protected:
-	bool _is_tx_done;
-	uint8_t _read_buffer[RX_SIZE_BUFFER];
-	CircularBuffer<uint8_t> *_buffer;
-	static ISR<UartIT, UART_ISR_MAX> ISR_LIST;
+    bool _is_tx_done;    // Flag: transmission complete or not
+    uint8_t _read_buffer[RX_SIZE_BUFFER];   // Temporary HAL RX buffer
+    CircularBuffer<uint8_t, RX_SIZE_BUFFER * 2> _buffer; // static circular buffer
+
+    static ISR<UartIT, UART_ISR_MAX> ISR_LIST; // List of ISR instances
+
 private:
-	static void TxCpltCallback(UART_HandleTypeDef* huart);
-	static void RxEventCallback(UART_HandleTypeDef* huart, uint16_t Pos);
-	void put(uint16_t index, uint16_t size);
+    static void TxCpltCallback(UART_HandleTypeDef* huart);        // TX complete callback
+    static void RxEventCallback(UART_HandleTypeDef* huart, uint16_t Pos); // RX event callback
+    void put(uint16_t index, uint16_t size);                      // Push RX data into circular buffer
 };
 
 
