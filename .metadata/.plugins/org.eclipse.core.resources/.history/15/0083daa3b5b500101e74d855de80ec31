@@ -1,0 +1,53 @@
+/*
+ * UART_Hal.cpp
+ *
+ *  Created on: Oct 30, 2025
+ *      Author: FA
+ */
+
+#include "UART_Hal.h"
+
+bool UartBase::isInit[]= {false};
+
+UartBase::UartBase(USART_TypeDef* Instance, UART_HandleTypeDef* huart):_Instance(Instance), _huart(huart){
+	UartBase::init();
+}
+
+UartBase::~UartBase(){
+	if(_Instance == USART2){
+		if(!isInit[0]) return;
+		isInit[0]= false;
+		HAL_UART_MspDeInit(_huart);
+	}
+}
+
+void UartBase::init(){
+	if(_Instance == USART2){
+		if(!isInit[0]) return;
+		isInit[0]= true;
+		MX_USART2_UART_Init();
+	}
+}
+
+HAL_StatusTypeDef UartBase::write(uint8_t* pData, uint16_t Size, uint32_t Timeout){
+	return HAL_UART_Transmit(_huart, pData, Size, Timeout);
+}
+
+
+// ------------- UartIT -------------
+
+UartIT::UartIT(USART_TypeDef* Instance, UART_HandleTypeDef* huart):UartBase(Instance, huart){
+#if USE_HAL_UART_REGISTER_CALLBACKS != 1
+#error "USE_HAL_UART_REGISTER_CALLBACKS must be set 1 "
+#endif
+}
+
+UartIT::~UartIT(){}
+
+void UartIT::TxCpltCallback(UART_HandleTypeDef* huart){
+
+}
+void UartIT::RxCpltCallback(UART_HandleTypeDef* huart, uint16_t Pos){
+
+}
+

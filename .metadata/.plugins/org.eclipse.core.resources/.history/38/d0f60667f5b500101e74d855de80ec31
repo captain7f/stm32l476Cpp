@@ -1,0 +1,54 @@
+/*
+ * CircularBuffer.h
+ *
+ *  Created on: Oct 31, 2025
+ *      Author: FA
+ */
+
+#ifndef INC_RINGERBUFFER_H_
+#define INC_RINGERBUFFER_H_
+
+#include "main.h"
+#include <string.h>
+
+template<size_t N>
+
+class RingBuffer{
+    std::array<uint8_t, N> buf{};
+    size_t head=0, tail=0;
+    public:
+    bool push(uint8_t c){
+        size_t n = (head+1)%N;
+        if(n==tail) return false;
+        buf[head]=c;
+        head= n;
+        return true;
+    }
+    bool pop(uint8_t& c){
+        if(tail == head) return false;
+        c= buf[tail];
+        tail = (tail+1)%N;
+        return true;
+    }
+    // Helper function to check if buffer is empty
+    bool empty() const {
+        return head == tail;
+    }
+
+    // Helper function to check if buffer is full
+    bool full() const {
+        return (head + 1) % N == tail;
+    }
+
+    // Helper function to get current size
+    size_t size() const {
+        if (head >= tail) {
+            return head - tail;
+        }
+        return N - (tail - head);
+    }
+};
+
+
+
+#endif /* INC_CIRCULARBUFFER_H_ */

@@ -1,0 +1,52 @@
+/*
+ * GPIO_Hal.cpp
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+
+#include "GPIO_Hal.h"
+
+
+bool GpioBase::isInit = false;
+
+GpioBase::GpioBase(){
+	GpioBase::init();
+}
+// Selten used
+GpioBase::~GpioBase(){
+
+}
+
+void GpioBase::init(){
+	if(GpioBase::isInit){
+		return;
+	}else{
+		//Initialize GPIOs
+		MX_GPIO_Init();
+		GpioBase::isInit= true;
+		return;
+	}
+}
+
+
+Led::Led(GPIO_TypeDef* port, uint16_t pin): m_port(port), m_pin(pin){
+	// Konstruktor GPIO muss außerhalb intialisiert werden
+}
+
+void Led::on() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_SET);
+}
+
+void Led::off() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_RESET);
+}
+void Led::toggle() const {
+	HAL_GPIO_TogglePin(m_port, m_pin);
+}
+// read the LED state
+GPIO_PinState Led::readLedState(){
+	HAL_GPIO_ReadPin(m_port, m_pin);
+}
+

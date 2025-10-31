@@ -1,0 +1,103 @@
+/*
+ * ISR_Hal.h
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+#ifndef INC_ISR_HAL_H_
+#define INC_ISR_HAL_H_
+
+#include "main.h"
+#include <vector>
+#include <algorithm>
+
+// ===============================================
+// Template class for managing a list of ISR-related objects
+// ===============================================
+//
+// This class is generic (template-based), meaning it can be used
+// with any type 'T' — for example, buttons, LEDs, or other GPIO objects.
+//
+// It simply stores pointers to these objects, so you can easily
+// add, remove, or access them during interrupt callbacks.
+// ===============================================
+
+template <class T>
+class ISR{
+public:
+//	ISR(){
+//		list_.clear();
+//	}
+//	~ISR(){
+//		list_.clear();
+//	}
+
+    // Default constructor
+    ISR() = default;
+
+    // Default destructor
+    ~ISR() = default;
+
+    // ---------------------------
+    // Add a new object pointer
+    // ---------------------------
+    void add(T* obj) {
+        // Ignore null pointers
+        if (obj == nullptr) return;
+
+        // Check if the object is already in the list to avoid duplicates
+        auto it = std::find(list_.begin(), list_.end(), obj);
+        if (it == list_.end()) {
+            list_.push_back(obj); // Add only if not found
+        }
+    }
+    // ---------------------------
+	// Remove an existing object pointer
+	// ---------------------------
+	void remove(T* obj) {
+		// Check for valid pointer and non-empty list
+		if (obj == nullptr || list_.empty()) return;
+
+		// Find the object in the list
+		auto it = std::find(list_.begin(), list_.end(), obj);
+		if (it != list_.end()) {
+			// Erase it only if found
+			list_.erase(it);
+		}
+	}
+
+	// ---------------------------
+	// Get an object by index
+	// ---------------------------
+	T* get(size_t index) {
+		// Boundary check: avoid out-of-range access
+		if (index >= list_.size()) {
+			return nullptr;
+		}
+		return list_[index];
+	}
+
+	// ---------------------------
+	// Get total number of objects
+	// ---------------------------
+	size_t size() const {
+		return list_.size();
+	}
+
+	// ---------------------------
+	// (Optional) Access full list (read-only)
+	// ---------------------------
+	const std::vector<T*>& raw_list() const {
+		return list_;
+	}
+
+private:
+	// The internal container that holds all object pointers
+	std::vector<T*> list_;
+};
+
+
+
+
+#endif /* INC_ISR_HAL_H_ */

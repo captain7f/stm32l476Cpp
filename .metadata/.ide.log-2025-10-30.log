@@ -1,0 +1,45 @@
+2025-10-31 02:51:20,819 [INFO] WebApp:194 - Connection lost
+2025-10-31 02:51:21,055 [INFO] WebApp:191 - Connection restablished
+2025-10-31 04:09:24,497 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-10-31 04:09:29,262 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-10-31 04:09:37,349 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 676244192 Bytes (811597824)
+2025-10-31 04:09:37,576 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 707179232 Bytes (811597824)
+2025-10-31 04:09:40,469 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 448631032 Bytes (811597824)
+2025-10-31 04:09:41,020 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-10-31 04:09:41,021 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-10-31 04:09:41,021 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-10-31 04:09:41,021 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-10-31 04:09:41,022 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-10-31 04:09:41,025 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-10-31 04:09:41,027 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2025-10-31 04:09:41,183 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\MXTmpFiles\license.tmp_save
+2025-10-31 04:09:41,724 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\MXTmpFiles\license.tmp
+2025-10-31 04:09:41,864 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\gpio.c_save
+2025-10-31 04:09:42,184 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\gpio.c
+2025-10-31 04:09:42,194 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\gpio.h_save
+2025-10-31 04:09:42,446 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\gpio.h
+2025-10-31 04:09:42,775 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\usart.c_save
+2025-10-31 04:09:43,150 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\usart.c
+2025-10-31 04:09:43,160 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\usart.h_save
+2025-10-31 04:09:43,310 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\usart.h
+2025-10-31 04:09:43,343 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\stm32l4xx_it.c_save
+2025-10-31 04:09:43,911 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\stm32l4xx_it.c
+2025-10-31 04:09:43,925 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\stm32l4xx_it.h_save
+2025-10-31 04:09:44,069 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\stm32l4xx_it.h
+2025-10-31 04:09:44,111 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\stm32l4xx_hal_msp.c_save
+2025-10-31 04:09:44,316 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\stm32l4xx_hal_msp.c
+2025-10-31 04:09:44,326 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\MXTmpFiles\system.tmp_save
+2025-10-31 04:09:44,444 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\MXTmpFiles\system.tmp
+2025-10-31 04:09:44,463 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\stm32l4xx_hal_conf.h_save
+2025-10-31 04:09:44,597 [INFO] CodeEngine:345 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\stm32l4xx_hal_conf.h
+2025-10-31 04:09:44,708 [INFO] ApiDbMcu:532 - Load IP Config File for USART1
+2025-10-31 04:09:44,724 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\main.h_save
+2025-10-31 04:09:44,928 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Inc\main.h
+2025-10-31 04:09:44,955 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\main.c_save
+2025-10-31 04:09:45,174 [INFO] CodeEngine:289 - Generated code: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Core\Src\main.c
+2025-10-31 04:09:46,294 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 402mS.
+2025-10-31 04:09:46,301 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-10-31 04:09:46,427 [INFO] ConfigFileManager:1595 - The Die is : DIE415
+2025-10-31 04:09:48,347 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 2047mS.
+2025-10-31 04:09:48,348 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-10-31 04:09:48,354 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.

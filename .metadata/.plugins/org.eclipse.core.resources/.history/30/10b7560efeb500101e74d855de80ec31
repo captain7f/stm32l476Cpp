@@ -1,0 +1,92 @@
+/*
+ * UART_Hal.cpp
+ *
+ *  Created on: Oct 30, 2025
+ *      Author: FA
+ */
+
+#include "UART_Hal.h"
+
+bool UartBase::isInit[]= {false};
+
+UartBase::UartBase(USART_TypeDef* Instance, UART_HandleTypeDef* huart):_Instance(Instance), _huart(huart){
+	UartBase::init();
+}
+
+UartBase::~UartBase(){
+	if(_Instance == USART2){
+		if(!isInit[0]) return;
+		isInit[0]= false;
+		HAL_UART_MspDeInit(_huart);
+	}
+}
+
+void UartBase::init(){
+	if(_Instance == USART2){
+		if(!isInit[0]) return;
+		isInit[0]= true;
+		MX_USART2_UART_Init();
+	}
+}
+
+HAL_StatusTypeDef UartBase::write(uint8_t* pData, uint16_t Size, uint32_t Timeout){
+	return HAL_UART_Transmit(_huart, pData, Size, Timeout);
+}
+
+
+// ------------- UartIT -------------
+ISR<UartIT, UART_ISR_MAX> UartIT::ISR_LIST;
+
+UartIT::UartIT(USART_TypeDef* Instance, UART_HandleTypeDef* huart):UartBase(Instance, huart), _is_tx_done(true){
+#if USE_HAL_UART_REGISTER_CALLBACKS != 1
+#error "USE_HAL_UART_REGISTER_CALLBACKS must be set 1 "
+#endif
+	huart->TxCpltCallback = TxCpltCallback;
+	huart->RxEventCallback = RxEventCallback;
+	(void)ISR_LIST.add(this);
+}
+
+UartIT::~UartIT(void){
+	(void)ISR_LIST.remove(this);
+}
+
+void UartIT::TxCpltCallback(UART_HandleTypeDef* huart){
+	for(uint16_t i=0; i<ISR_LIST.size(); i++){
+		if(ISR_LIST.get(i)->_huart == huart){
+			ISR_LIST.get(i)->_is_tx_done= true;
+		}
+	}
+}
+void UartIT::RxEventCallback(UART_HandleTypeDef* huart, uint16_t Pos){
+	for(uint16_t i=0; i<ISR_LIST.size(); i++){
+		if(ISR_LIST.get(i)->_huart == huart){
+			ISR_LIST.get(i)->put(0,Pos);
+		}
+	}
+}
+
+HAL_StatusTypeDef UartIT::write(uint8_t *pData, uint16_t Size){
+	if(!_is_tx_done) return HAL_BUSY;
+	_is_tx_done= false;
+	return HAL_UART_Transmit_IT(_huart, pData, Size);
+}
+uint16_t UartIT::read(uint8_t *pData, uint16_t Size){
+	return _buffer->pull(pData, Size);
+}
+
+HAL_StatusTypeDef UartIT::start_read(void){
+	memset(_read_buffer,0,sizeof(_read_buffer));
+	return HAL_UARTEx_ReceiveToIdle_IT(_huart, _read_buffer, sizeof(_read_buffer));
+}
+
+void UartIT::put(uint16_t index, uint16_t size){
+	_buffer->put(&_read_buffer[index], size);
+	start_read();
+}
+
+bool UartIT::is_tx_done(void){
+	return _is_tx_done;
+}
+
+
+

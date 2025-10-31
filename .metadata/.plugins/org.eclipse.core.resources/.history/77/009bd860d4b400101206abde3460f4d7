@@ -1,0 +1,58 @@
+/*
+ * GPIO_Hal.h
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+#ifndef INC_GPIO_HAL_H_
+#define INC_GPIO_HAL_H_
+
+#include "gpio.h"
+#include "stm32l4xx_hal.h"
+
+/*
+ * class um GPIOs zu verwalten
+ */
+class GpioBase{
+public:
+	GpioBase();
+	~GpioBase();
+
+	static void init(viod);
+private:
+	static bool isInit;
+};
+/*
+ * class um LEDs zu verwalten
+ */
+class Led : public GpioBase{
+public:
+	Led(GPIO_TypeDef* port, uint16_t pin);
+	void on() const;
+	void off() const;
+	void toggle() const;
+	GPIO_PinStat readLedState(void);
+private:
+	GPIO_TypeDef* m_port;
+	uint16_t m_pin;
+
+};
+
+/*
+ * class um Buttons zu verwalten
+ */
+class Button: public GpioBase{
+public:
+	Button(GPIO_TypeDef* port, uint16_t pin);
+	~Button();
+	GPIO_PinState readButtonState(void);
+private:
+	GPIO_TypeDef* m_port;
+	uint16_t m_pin;
+};
+
+
+
+
+#endif /* INC_GPIO_HAL_H_ */

@@ -1,0 +1,220 @@
+!SESSION 2025-10-28 22:25:31.142 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\FA\MyRePoSitories__\stm32TestCpp
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-10-28 22:25:37.900
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-10-28 22:25:37.901
+!MESSAGE Log4j2 initialized with config file C:\Users\FA\MyRePoSitories__\stm32TestCpp\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-10-28 22:25:41.949
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-28 22:28:15.884
+!MESSAGE Indexed 'stm32l476Cpp' (21 sources, 80 headers) in 6.71 sec: 4,838 declarations; 22,714 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0073%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-28 23:06:53.926
+!MESSAGE Indexed 'stm32l476Cpp' (21 sources, 81 headers) in 1.36 sec: 4,834 declarations; 22,705 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0073%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2025-10-28 23:07:08.029
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-28 23:11:40.306
+!MESSAGE Indexed 'stm32l476Cpp' (22 sources, 81 headers) in 1.11 sec: 4,844 declarations; 22,788 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0072%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-29 00:55:50.033
+!MESSAGE Indexed 'stm32l476Cpp' (23 sources, 117 headers) in 2.31 sec: 7,067 declarations; 28,271 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-29 01:19:57.731
+!MESSAGE Indexed 'stm32l476Cpp' (23 sources, 117 headers) in 1.67 sec: 7,067 declarations; 28,272 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-10-29 01:27:45.925
+!MESSAGE CDT Build Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: CDT Build Error
+	at org.eclipse.cdt.managedbuilder.internal.core.GeneratedMakefileBuilder.invokeInternalBuilderForOneProject(GeneratedMakefileBuilder.java:1531)
+	at org.eclipse.cdt.managedbuilder.internal.core.GeneratedMakefileBuilder.invokeInternalBuilder(GeneratedMakefileBuilder.java:1428)
+	at org.eclipse.cdt.managedbuilder.internal.ui.commands.BuildFilesHandler$BuildFilesJob.run(BuildFilesHandler.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.managedbuilder.buildmodel.IBuildResource.getDependentIOTypes()" because "buildResource" is null
+	at org.eclipse.cdt.managedbuilder.internal.core.GeneratedMakefileBuilder.invokeInternalBuilderForOneProject(GeneratedMakefileBuilder.java:1487)
+	... 3 more
+!SUBENTRY 1 org.eclipse.cdt.managedbuilder.core 4 0 2025-10-29 01:27:45.926
+!MESSAGE CDT Build Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.managedbuilder.buildmodel.IBuildResource.getDependentIOTypes()" because "buildResource" is null
+	at org.eclipse.cdt.managedbuilder.internal.core.GeneratedMakefileBuilder.invokeInternalBuilderForOneProject(GeneratedMakefileBuilder.java:1487)
+	at org.eclipse.cdt.managedbuilder.internal.core.GeneratedMakefileBuilder.invokeInternalBuilder(GeneratedMakefileBuilder.java:1428)
+	at org.eclipse.cdt.managedbuilder.internal.ui.commands.BuildFilesHandler$BuildFilesJob.run(BuildFilesHandler.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.help.base 2 0 2025-10-29 01:36:24.269
+!MESSAGE Unable to consume Lucene index from bundle 'org.eclipse.cdt.doc.user_11.6.1.202406241230 [541]'. The index should be rebuilt with Lucene 9.11.1
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2025-10-29 01:56:04.948
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Debug\stm32l476Cpp.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:336)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2025-10-29 01:56:04.948
+!MESSAGE C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Debug\stm32l476Cpp.elf not found
+!STACK 0
+java.io.FileNotFoundException: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Debug\stm32l476Cpp.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:336)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2025-10-29 01:56:55.038
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Debug\stm32l476Cpp.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:336)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2025-10-29 01:56:55.038
+!MESSAGE C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Debug\stm32l476Cpp.elf not found
+!STACK 0
+java.io.FileNotFoundException: C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\Debug\stm32l476Cpp.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:336)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-29 01:57:05.974
+!MESSAGE Indexed 'stm32l476Cpp' (23 sources, 117 headers) in 1.77 sec: 7,067 declarations; 28,271 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-29 02:04:07.851
+!MESSAGE Indexed 'stm32l476Cpp' (23 sources, 117 headers) in 4.03 sec: 7,067 declarations; 28,253 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-29 02:04:29.368
+!MESSAGE Indexed 'stm32l476Cpp' (23 sources, 117 headers) in 3.58 sec: 7,067 declarations; 28,253 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+!SESSION 2025-10-29 13:43:34.372 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-10-29 13:43:42.828
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-10-29 13:43:42.829
+!MESSAGE Log4j2 initialized with config file C:\Users\FA\MyRePoSitories__\stm32TestCpp\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-10-29 13:43:50.116
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-10-29 13:45:29.655
+!MESSAGE Indexed 'Button' (22 sources, 81 headers) in 4.16 sec: 4,845 declarations; 22,808 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0072%)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 5012 2025-10-29 20:09:06.041
+!MESSAGE Error in final launch sequence:
+
+Setup exceptions
+!STACK 1
+org.eclipse.core.runtime.CoreException: Setup exceptions
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:112)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:252)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:336)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 com.st.stm32cube.ide.mcu.debug.launch 4 0 2025-10-29 20:09:06.042
+!MESSAGE Setup exceptions
+
+!ENTRY org.eclipse.core.jobs 4 2 2025-10-30 01:45:35.363
+!MESSAGE An internal error occurred during: "Execute Debug Command".
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: assertion failed: The application has not been initialized.
+	at org.eclipse.core.runtime.Assert.isTrue(Assert.java:119)
+	at org.eclipse.core.internal.runtime.InternalPlatform.assertInitialized(InternalPlatform.java:185)
+	at org.eclipse.core.internal.runtime.InternalPlatform.getAdapterManager(InternalPlatform.java:206)
+	at org.eclipse.core.runtime.Platform.getAdapterManager(Platform.java:661)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunch.getAdapter(GdbLaunch.java:454)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunch.disconnect(GdbLaunch.java:338)
+	at org.eclipse.debug.internal.core.commands.DisconnectCommand.execute(DisconnectCommand.java:35)
+	at org.eclipse.debug.internal.core.commands.ForEachCommand.doExecute(ForEachCommand.java:36)
+	at org.eclipse.debug.core.commands.AbstractDebugCommand$1.run(AbstractDebugCommand.java:215)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 2 2 2025-10-30 01:45:35.681
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.cdt.dsf.gdb.internal.ui.console.GdbBasicCliConsole$InputReadJob RUNNING
+	 at java.base/java.lang.Object.wait0(Native Method)
+	 at java.base/java.lang.Object.wait(Object.java:366)
+	 at java.base/java.lang.Object.wait(Object.java:339)
+	 at org.eclipse.ui.console.IOConsoleInputStream.waitForData(IOConsoleInputStream.java:140)
+	 at org.eclipse.ui.console.IOConsoleInputStream.read(IOConsoleInputStream.java:91)
+	 at org.eclipse.ui.console.IOConsoleInputStream.read(IOConsoleInputStream.java:113)
+	 at org.eclipse.cdt.dsf.gdb.internal.ui.console.GdbBasicCliConsole$InputReadJob.run(GdbBasicCliConsole.java:248)
+	 at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2025-10-30 14:33:02.199 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-10-30 14:34:51.055
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-10-30 14:34:51.055
+!MESSAGE Log4j2 initialized with config file C:\Users\FA\MyRePoSitories__\stm32TestCpp\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-10-30 14:34:59.712
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-10-31 17:53:46.822 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-10-31 17:53:56.392
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-10-31 17:53:56.393
+!MESSAGE Log4j2 initialized with config file C:\Users\FA\MyRePoSitories__\stm32TestCpp\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-10-31 17:54:05.551
+!MESSAGE Started RMI Server, listening on port 41337

@@ -1,0 +1,101 @@
+/*
+ * GPIO_Hal.cpp
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+
+#include "GPIO_Hal.h"
+
+
+ISR<ButtonISR> ButtonISR::ISR_LIST;
+
+bool GpioBase::isInit = false;
+
+GpioBase::GpioBase(){
+	GpioBase::init();
+}
+// Selten used
+GpioBase::~GpioBase(){
+
+}
+
+void GpioBase::init(){
+	if(GpioBase::isInit){
+		return;
+	}else{
+		//Initialize GPIOs
+		MX_GPIO_Init();
+		GpioBase::isInit= true;
+		return;
+	}
+}
+
+
+uint16_t GpioBase::get_pin(void){
+	return m_pin;
+}
+
+Led::Led(GPIO_TypeDef* port, uint16_t pin, GPIO_PinState state): m_port(port), m_pin(pin){
+	// Konstruktor GPIO muss außerhalb intialisiert werden
+}
+
+void Led::on() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_SET);
+}
+
+void Led::off() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_RESET);
+}
+void Led::toggle() const {
+	HAL_GPIO_TogglePin(m_port, m_pin);
+}
+// read the LED state
+GPIO_PinState Led::readLedState(){
+	return HAL_GPIO_ReadPin(m_port, m_pin);
+}
+
+void Led::write(GPIO_PinState state){
+	HAL_GPIO_WritePin(m_port, m_pin, state);
+}
+
+
+Button::Button(GPIO_TypeDef* port, uint16_t pin):m_port(port), m_pin(pin){
+
+}
+
+GPIO_PinState Button::readButtonState(){
+	return HAL_GPIO_ReadPin(m_port, m_pin);
+}
+
+// ISR
+ButtonISR::ButtonISR(GPIO_TypeDef* port, uint16_t pin):Button(port,  pin),_cb(NULL){
+	ButtonISR::ISR_LIST.add(this); //
+}
+
+ButtonISR::~ButtonISR(){
+	ButtonISR::ISR_LIST.remove(this); //
+}
+
+void ButtonISR::set_isr_cb(gpio_isr_cb cb){
+	_cb = cb;
+}
+void ButtonISR::call_isr(void){
+	if(_cb==NULL) return;
+	else _cb();
+}
+
+void ButtonISR::trigger_pin(uint16_t gpio_pin){
+	for(uint8_t ix=0; ix < ButtonISR::ISR_LIST.size(); ix++){
+		uint16_t pin= ButtonISR::ISR_LIST.get(ix)->get_pin();
+		if(pin == gpio_pin){
+			ButtonISR::ISR_LIST.get(ix)->call_isr();
+		}
+	}
+}
+extern "C" void HAL_GPIO_EXIT_Callback(uint16_t GPIO_Pin){
+	ButtonISR::trigger_pin(GPIO_Pin);
+}
+
+

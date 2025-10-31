@@ -1,0 +1,27 @@
+/*
+ * led.cpp
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+
+#include "led.h"
+
+
+
+drivers::Led::Led(GPIO_TypeDef* port, uint16_t pin): m_port(port), m_pin(pin){
+	// Konstruktor GPIO muss außerhalb intialisiert werden
+}
+
+void drivers::Led::on() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_SET);
+}
+
+void drivers::Led::off() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_RESET);
+}
+void drivers::Led::toggle() const {
+	HAL_GPIO_TogglePin(m_port, m_pin);
+}
+

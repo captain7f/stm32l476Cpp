@@ -1,0 +1,30 @@
+/*
+ * led.h
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+#ifndef INC_LED_H_
+#define INC_LED_H_
+
+#include "gpio.h"
+#include "stm32l4xx_hal.h"
+
+namespace driver{
+class Led{
+	public:
+		Led(GPIO_TypeDef* port, uint16_t pin);
+		void on() const;
+		void off() const;
+		void toggle() const;
+	private:
+		GPIO_TypeDef* m_port;
+		uint16_t m_pin;
+
+};
+} // namespace drivers
+
+
+
+#endif /* INC_LED_H_ */

@@ -1,0 +1,59 @@
+/*
+ * UART_Hal.h
+ *
+ *  Created on: Oct 30, 2025
+ *      Author: FA
+ */
+
+#ifndef INC_UART_HAL_H_
+#define INC_UART_HAL_H_
+
+#include "main.h"
+#include "usart.h"
+
+#include "ISR_Hal.h"
+
+#define UART_COUNT (1)
+
+#ifndef UART_ISR_MAX
+  #define UART_ISR_MAX 8
+#endif
+
+// ------------- UartBase -------------
+class UartBase{
+public:
+	UartBase(USART_TypeDef* Instance, UART_HandleTypeDef* huart);
+	~UartBase();
+
+	void init();
+	HAL_StatusTypeDef write(uint8_t* pData, uint16_t Size, uint32_t Timeout =1000);
+protected:
+	USART_TypeDef* _Instance;
+	UART_HandleTypeDef* _huart;
+private:
+	static bool  isInit[UART_COUNT];
+};
+
+
+
+// ------------- UartIT -------------
+
+
+class UartIT: public UartBase{
+public:
+	UartIT(USART_TypeDef* Instance, UART_HandleTypeDef* huart);
+	~UartIT();
+
+	HAL_StatusTypeDef write(uint8_t *pData, uint16_t Size);
+	HAL_StatusTypeDef start_read(uint8_t *pData, uint16_t Size);
+	HAL_StatusTypeDef read(uint8_t *pData, uint16_t Size);
+protected:
+	bool _is_tx_done;
+	static ISR<UartIT, UART_ISR_MAX> ISR_LIST;
+private:
+	static void TxCpltCallback(UART_HandleTypeDef* huart);
+	static void RxEventCallback(UART_HandleTypeDef* huart, uint16_t Pos);
+};
+
+
+#endif /* INC_UART_HAL_H_ */

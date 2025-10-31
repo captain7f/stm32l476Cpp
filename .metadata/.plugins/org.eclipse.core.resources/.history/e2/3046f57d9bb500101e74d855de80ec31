@@ -1,0 +1,112 @@
+/*
+ * GPIO_Hal.cpp
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+
+#include "GPIO_Hal.h"
+
+// ------------- GpioBase -------------
+ISR<ButtonISR> ButtonISR::ISR_LIST;
+
+bool GpioBase::s_inited  = false;
+
+GpioBase::GpioBase(GPIO_TypeDef* port, uint16_t pin): m_port(port), m_pin(pin){
+	GpioBase::init();
+}
+// Selten used
+GpioBase::~GpioBase(){
+
+}
+
+void GpioBase::init(){
+	if(GpioBase::isInit)return;
+	// Configure all pins (modes, pulls, speeds, EXTI, NVIC) in CubeMX
+	MX_GPIO_Init();
+	GpioBase::isInit= true;
+	return;
+	}
+}
+
+
+uint16_t GpioBase::get_pin(void){
+	return m_pin;
+}
+
+// ------------- Led -------------
+
+Led::Led(GPIO_TypeDef* port, uint16_t pin, GPIO_PinState state): GpioBase(port, pin){
+	// Konstruktor GPIO muss außerhalb intialisiert werden
+}
+
+void Led::on() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_SET);
+}
+
+void Led::off() const {
+	HAL_GPIO_WritePin(m_port, m_pin, GPIO_PIN_RESET);
+}
+void Led::toggle() const {
+	HAL_GPIO_TogglePin(m_port, m_pin);
+}
+// read the LED state
+GPIO_PinState Led::read(){
+	return HAL_GPIO_ReadPin(m_port, m_pin);
+}
+
+void Led::write(GPIO_PinState state){
+	HAL_GPIO_WritePin(m_port, m_pin, state);
+}
+
+
+// ------------- Button -------------
+
+Button::Button(GPIO_TypeDef* port, uint16_t pin):GpioBase(port, pin){
+
+}
+
+GPIO_PinState Button::read(){
+	return HAL_GPIO_ReadPin(m_port, m_pin);
+}
+
+
+// ------------- ButtonISR -------------
+ISR<ButtonISR, BUTTON_ISR_MAX> ButtonISR::ISR_LIST;
+
+ButtonISR::ButtonISR(GPIO_TypeDef* port, uint16_t pin):Button(port,  pin),_cb(NULL){
+	// Ignore return value; if full, you may add logging/assertion
+	(void)ISR_LIST.add(this);
+}
+
+ButtonISR::~ButtonISR(){
+	(void)ISR_LIST.remove(this);
+}
+
+void ButtonISR::set_isr_cb(gpio_isr_cb cb){
+	m_cb  = cb;
+}
+void ButtonISR::call_isr(void){
+	if(m_cb ==NULL) return;
+	else m_cb ();
+}
+
+void ButtonISR::trigger_pin(uint16_t gpio_pin){
+	const size_t n = ISR_LIST.size();
+	for(size_t ix=0; ix < n; ix++){
+		ButtonISR* obj = ISR_LIST.get(i);
+		 if (!obj) continue;
+		if(obj->pin() == gpio_pin){
+			obj->call_isr();
+		}
+	}
+}
+// ------------------------------------------------------------
+// Correct HAL EXTI user callback name (called from HAL IRQ handler)
+// ------------------------------------------------------------
+extern "C" void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	ButtonISR::trigger_pin(GPIO_Pin);
+}
+
+

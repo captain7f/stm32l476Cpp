@@ -1,0 +1,35 @@
+/*
+ * UART_Hal.cpp
+ *
+ *  Created on: Oct 30, 2025
+ *      Author: FA
+ */
+
+#include "UART_Hal.h"
+
+bool UartBase::isInit[]= (false);
+
+UartBase::UartBase(USART_TypeDef* Instance, UART_HandleTypeDef* haurt){
+	UartBase::init();
+}
+
+UartBase::~UartBase(){
+	if(_Instance == USART2){
+		if(!isInit[0]) return;
+		isInit[0]= false;
+		HAL_UART_MspDeInit(_huart);
+	}
+}
+
+void UartBase::init(){
+	if(_Instance == USART2){
+		if(!isInit[0]) return;
+		isInit[0]= true;
+		MX_USART2_UART_Init();
+	}
+}
+
+HAL_StatusTypeDef UartBase::write(uint8_t* pData, uint16_t Size, uint32_t Timeout){
+	return HAL_UART_Transmit(_huart,pData, Size, Timeout);
+}
+

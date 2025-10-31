@@ -1,0 +1,85 @@
+/*
+ * GPIO_Hal.h
+ *
+ *  Created on: Oct 29, 2025
+ *      Author: FA
+ */
+
+#ifndef INC_GPIO_HAL_H_
+#define INC_GPIO_HAL_H_
+
+#include "gpio.h"
+#include "stm32l4xx_hal.h"
+// FA includes
+#include "ISR_Hal.h"
+
+
+typedef void(*gpio_isr_cb)(void);
+/*
+ * class um GPIOs zu verwalten
+ */
+class GpioBase{
+public:
+	GpioBase();
+	~GpioBase();
+
+	static void init(void);
+	uint16_t get_pin(void);
+protected:
+	GPIO_TypeDef* m_port;
+	uint16_t m_pin;
+private:
+	static bool isInit;
+};
+/*
+ * class um LEDs zu verwalten
+ */
+class Led : public GpioBase{
+public:
+	Led(GPIO_TypeDef* port, uint16_t pin, GPIO_PinState state= GPIO_PIN_RESET);
+	void on() const;
+	void off() const;
+	void toggle() const;
+	GPIO_PinState readLedState(void);
+	void write(GPIO_PinState state);
+private:
+	GPIO_TypeDef* m_port;
+	uint16_t m_pin;
+
+};
+
+/*
+ * class um Buttons zu verwalten
+ */
+class Button: public GpioBase{
+public:
+	Button(GPIO_TypeDef* port, uint16_t pin);
+	~Button();
+	GPIO_PinState readButtonState(void);
+private:
+	GPIO_TypeDef* m_port;
+	uint16_t m_pin;
+};
+
+
+/*
+ * class um Buttons als external Interrupt zu verwalten
+ */
+class ButtonISR: public Button{
+public:
+	ButtonISR(GPIO_TypeDef* port, uint16_t pin);
+	~ButtonISR();
+	void set_isr_cb(void);
+	void call_isr(void);
+
+	static void trigger_pin(uint16_t gpio_pin);
+
+private:
+	gpio_isr_cb _cb;
+
+	GPIO_TypeDef* m_port;
+	uint16_t m_pin;
+};
+
+
+#endif /* INC_GPIO_HAL_H_ */
