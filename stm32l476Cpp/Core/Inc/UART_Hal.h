@@ -12,6 +12,7 @@
 #include "main.h"
 #include "usart.h"
 
+#include "dma_Hal.h"
 #include "ISR_Hal.h"
 #include "CircularBuffer.h"
 //-------defines------------
@@ -47,8 +48,8 @@ public:
 	UartIT(USART_TypeDef* Instance, UART_HandleTypeDef* huart);
 	~UartIT();
 
-	HAL_StatusTypeDef write(uint8_t *pData, uint16_t Size);
-	HAL_StatusTypeDef start_read(void);
+	virtual HAL_StatusTypeDef write(uint8_t *pData, uint16_t Size);
+	virtual HAL_StatusTypeDef start_read(void);
 	uint16_t read(uint8_t *pData, uint16_t Size);
 	bool is_tx_done(void);
 protected:
@@ -61,8 +62,26 @@ protected:
 private:
     static void TxCpltCallback(UART_HandleTypeDef* huart);        // TX complete callback
     static void RxEventCallback(UART_HandleTypeDef* huart, uint16_t Pos); // RX event callback
-    void put(uint16_t index, uint16_t size);                      // Push RX data into circular buffer
+    virtual void put(uint16_t index, uint16_t size);                      // Push RX data into circular buffer
 };
+
+
+
+// ----------- UartDMA implementation -----------
+
+class UartDMA : public UartIT{
+public:
+	UartDMA(USART_TypeDef* Instance, UART_HandleTypeDef* huart);
+	~UartDMA();
+	virtual HAL_StatusTypeDef write(uint8_t *pData, uint16_t Size);
+	virtual HAL_StatusTypeDef start_read(void);
+private:
+
+    virtual void put(uint16_t index, uint16_t size);                      // Push RX data into circular buffer
+};
+
+
+
 
 
 #endif /* INC_UART_HAL_H_ */

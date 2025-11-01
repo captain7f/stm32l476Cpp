@@ -1,6 +1,33 @@
-18:26:36 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
+09:47:54 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
 make -j8 all 
 arm-none-eabi-g++ "../Core/Src/UART_Hal.cpp" -mcpu=cortex-m4 -std=gnu++17 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/UART_Hal.d" -MT"Core/Src/UART_Hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/UART_Hal.o"
+arm-none-eabi-g++ -o "stm32l476Cpp.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32l476Cpp.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: stm32l476Cpp.elf
+ 
+arm-none-eabi-size  stm32l476Cpp.elf 
+arm-none-eabi-objdump -h -S stm32l476Cpp.elf  > "stm32l476Cpp.list"
+   text	   data	    bss	    dec	    hex	filename
+  23452	     92	   2468	  26012	   659c	stm32l476Cpp.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32l476Cpp.list
+ 
+09:48:12 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
+make -j8 all 
+arm-none-eabi-size  stm32l476Cpp.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23452	     92	   2468	  26012	   659c	stm32l476Cpp.elf
+Finished building: default.size.stdout
+ 
+09:49:24 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
+make -j8 all 
+arm-none-eabi-size  stm32l476Cpp.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23452	     92	   2468	  26012	   659c	stm32l476Cpp.elf
+Finished building: default.size.stdout
+ 
+11:11:07 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
+make -j8 all 
 arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++17 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-g++ -o "stm32l476Cpp.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32l476Cpp.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: stm32l476Cpp.elf
@@ -8,15 +35,22 @@ Finished building target: stm32l476Cpp.elf
 arm-none-eabi-size  stm32l476Cpp.elf 
 arm-none-eabi-objdump -h -S stm32l476Cpp.elf  > "stm32l476Cpp.list"
    text	   data	    bss	    dec	    hex	filename
-  20228	     92	   2316	  22636	   586c	stm32l476Cpp.elf
+  21216	     92	   2460	  23768	   5cd8	stm32l476Cpp.elf
 Finished building: default.size.stdout
  
 Finished building: stm32l476Cpp.list
  
-20:55:53 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
+11:24:57 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
 make -j8 all 
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++17 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "stm32l476Cpp.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\FA\MyRePoSitories__\stm32TestCpp\stm32l476Cpp\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32l476Cpp.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: stm32l476Cpp.elf
+ 
 arm-none-eabi-size  stm32l476Cpp.elf 
+arm-none-eabi-objdump -h -S stm32l476Cpp.elf  > "stm32l476Cpp.list"
    text	   data	    bss	    dec	    hex	filename
-  20228	     92	   2316	  22636	   586c	stm32l476Cpp.elf
+  21240	     92	   2460	  23792	   5cf0	stm32l476Cpp.elf
 Finished building: default.size.stdout
+ 
+Finished building: stm32l476Cpp.list
  

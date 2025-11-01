@@ -22,80 +22,25 @@
 #include "main.h"
 #include "gpio.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 volatile uint32_t blueB_latch= 0;
 void blueB_callback(){
 	blueB_latch++;
 }
 
-
-/* USER CODE END 0 */
-
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
-
 extern "C" int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
   /* Configure the system clock */
   SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
-  //MX_GPIO_Init(); // in Gpio_Hal initialized
-  /* USER CODE BEGIN 2 */
-
 
 //  Button buttonBlue(blueButton_GPIO_Port, blueButton_Pin);
 
@@ -108,15 +53,15 @@ extern "C" int main(void)
   // Uart2
 //  UartBase uart2(USART2, &huart2);
   UartIT uartIt2(USART2, &huart2);
+//  UartDMA uartIt2(USART1, &huart1); // DMA Uart1
+
   uint8_t c[64]= "Pragram start\n\r";
   uartIt2.write(c, strlen((char*)c));
+  while(!uartIt2.is_tx_done());
   memset(c,0,sizeof(c));
   uartIt2.start_read();
 
 
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {

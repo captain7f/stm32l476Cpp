@@ -6,11 +6,16 @@
 ../Core/Src/UART_Hal.cpp:57:1:UartIT::~UartIT()	1
 ../Core/Src/UART_Hal.cpp:62:6:static void UartIT::TxCpltCallback(UART_HandleTypeDef*)	3
 ../Core/Src/UART_Hal.cpp:70:6:static void UartIT::RxEventCallback(UART_HandleTypeDef*, uint16_t)	3
-../Core/Src/UART_Hal.cpp:78:19:HAL_StatusTypeDef UartIT::write(uint8_t*, uint16_t)	2
+../Core/Src/UART_Hal.cpp:78:19:virtual HAL_StatusTypeDef UartIT::write(uint8_t*, uint16_t)	2
 ../Core/Src/UART_Hal.cpp:84:10:uint16_t UartIT::read(uint8_t*, uint16_t)	1
-../Core/Src/UART_Hal.cpp:88:19:HAL_StatusTypeDef UartIT::start_read()	1
-../Core/Src/UART_Hal.cpp:93:6:void UartIT::put(uint16_t, uint16_t)	1
+../Core/Src/UART_Hal.cpp:88:19:virtual HAL_StatusTypeDef UartIT::start_read()	1
+../Core/Src/UART_Hal.cpp:93:6:virtual void UartIT::put(uint16_t, uint16_t)	1
 ../Core/Src/UART_Hal.cpp:98:6:bool UartIT::is_tx_done()	1
+../Core/Src/UART_Hal.cpp:106:1:UartDMA::UartDMA(USART_TypeDef*, UART_HandleTypeDef*)	1
+../Core/Src/UART_Hal.cpp:110:1:UartDMA::~UartDMA()	1
+../Core/Src/UART_Hal.cpp:113:19:virtual HAL_StatusTypeDef UartDMA::write(uint8_t*, uint16_t)	3
+../Core/Src/UART_Hal.cpp:123:19:virtual HAL_StatusTypeDef UartDMA::start_read()	1
+../Core/Src/UART_Hal.cpp:129:6:virtual void UartDMA::put(uint16_t, uint16_t)	3
 ../Core/Inc/ISR_Hal.h:38:5:ISR<T, MAX>::ISR() [with T = UartIT; unsigned int MAX = 2]	2
 ../Core/Inc/CircularBuffer.h:19:5:CircularBuffer<T, N>::CircularBuffer() [with T = unsigned char; short unsigned int N = 128]	1
 ../Core/Inc/ISR_Hal.h:50:10:bool ISR<T, MAX>::add(T*) [with T = UartIT; unsigned int MAX = 2]	5
@@ -19,5 +24,5 @@
 ../Core/Inc/ISR_Hal.h:90:8:T* ISR<T, MAX>::get(size_t) const [with T = UartIT; unsigned int MAX = 2]	2
 ../Core/Inc/CircularBuffer.h:40:14:uint16_t CircularBuffer<T, N>::pull(T*, uint16_t) [with T = unsigned char; short unsigned int N = 128]	4
 ../Core/Inc/CircularBuffer.h:24:10:void CircularBuffer<T, N>::put(const T*, uint16_t) [with T = unsigned char; short unsigned int N = 128]	5
-../Core/Src/UART_Hal.cpp:100:1:void __static_initialization_and_destruction_0()	1
-../Core/Src/UART_Hal.cpp:100:1:cpp)	1
+../Core/Src/UART_Hal.cpp:147:1:void __static_initialization_and_destruction_0()	1
+../Core/Src/UART_Hal.cpp:147:1:cpp)	1

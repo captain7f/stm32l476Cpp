@@ -99,5 +99,64 @@ bool UartIT::is_tx_done(void){
 	return _is_tx_done;
 }
 
+// ----------- UartDMA implementation -----------
+
+
+
+UartDMA::UartDMA(USART_TypeDef* Instance, UART_HandleTypeDef* huart):UartIT(Instance, huart){
+	DMA::init();
+	ISR_LIST.add(this);
+}
+UartDMA::~UartDMA(){
+	ISR_LIST.remove(this);
+}
+HAL_StatusTypeDef UartDMA::write(uint8_t *pData, uint16_t Size){
+
+	if(!_is_tx_done){
+		return HAL_BUSY;
+	}
+	HAL_StatusTypeDef ret= HAL_OK;
+	ret = HAL_UART_Transmit_DMA(_huart, pData, Size);
+	if(ret != HAL_OK) _is_tx_done= true;
+	return ret;
+}
+HAL_StatusTypeDef UartDMA::start_read(void){
+	memset(_read_buffer,0,RX_SIZE_BUFFER);
+	return HAL_UARTEx_ReceiveToIdle_DMA(_huart, _read_buffer, RX_SIZE_BUFFER);
+
+}
+
+void UartDMA::put(uint16_t index, uint16_t Size){
+	static uint16_t last_size(0);
+	static uint16_t next_index(0);
+	uint16_t size = Size - last_size;
+
+	_buffer.put(&_read_buffer[next_index], size);
+	next_index += size;
+
+	if(next_index >= RX_SIZE_BUFFER){
+		next_index -= RX_SIZE_BUFFER;
+	}
+
+	if(last_size >= RX_SIZE_BUFFER){
+		last_size = 0;
+		return;
+	}
+
+	last_size = Size;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
