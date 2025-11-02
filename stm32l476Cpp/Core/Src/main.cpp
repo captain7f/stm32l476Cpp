@@ -21,6 +21,7 @@
 #include "UART_Hal.h"
 #include "main.h"
 #include "gpio.h"
+#include "tim_Hal.h"
 
 
 
@@ -61,12 +62,23 @@ extern "C" int main(void)
   memset(c,0,sizeof(c));
   uartIt2.start_read();
 
+  // timer3
+  // 1. Create the Timer_Base object (assuming 'htim3' is the HAL handle)
+  TimBase timer3(TIM3, &htim3);
+  // 2. Start the timer
+  timer3.start();
+  // timer3
+  TimIt timer2(TIM2, &htim2);
+  uint64_t tick_ms_pre = 0;
+  timer2.start();
+
+
 
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-	  // toggle the ld2 Led
+	  // -----------toggle the ld2 Led--------------------
 //	  ld2.toggle();
 //	  HAL_Delay(5000);
 
@@ -82,7 +94,7 @@ extern "C" int main(void)
 	  }
 
 
-	  // Uart2
+	  // ---------------Uart2--------------------
 	  uint16_t len= uartIt2.read(c, sizeof(c));
 
 	  if(len>0){
@@ -91,9 +103,18 @@ extern "C" int main(void)
 	  }
 	  memset(c,0,sizeof(c));
 
-    /* USER CODE BEGIN 3 */
+    // --------------Timer3------------------------
+
+	  uint32_t start_time = timer3.read();
+	  while (timer3.read() - start_time < 1500);
+	  // timer2 interrupt
+	  if(timer2.delay_Ms(tick_ms_pre, 1000)){
+		  ld2.toggle();
+	  }
+	  tick_ms_pre = timer2.read();
+
   }
-  /* USER CODE END 3 */
+
 }
 /**
   * @brief System Clock Configuration

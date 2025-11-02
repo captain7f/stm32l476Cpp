@@ -45,7 +45,7 @@ ISR<UartIT, UART_ISR_MAX> UartIT::ISR_LIST;
 UartIT::UartIT(USART_TypeDef* Instance, UART_HandleTypeDef* huart)
 	:UartBase(Instance, huart), _is_tx_done(true){
 #if USE_HAL_UART_REGISTER_CALLBACKS != 1
-#error "USE_HAL_UART_REGISTER_CALLBACKS must be set 1 "
+#error"USE_HAL_UART_REGISTER_CALLBACKS must be set 1"
 #endif
 	 // Register callbacks
 	huart->TxCpltCallback = TxCpltCallback;
