@@ -18,19 +18,34 @@ UartBase::UartBase(USART_TypeDef* Instance, UART_HandleTypeDef* huart):_Instance
 }
 
 UartBase::~UartBase(){
-	if(_Instance == USART2){
+	if(_Instance == USART1){
 		if(!isInit[0]) return;
 		isInit[0]= false;
-		HAL_UART_MspDeInit(_huart);// Initialize UART if needed
+	}else if(_Instance == USART1){
+		if(!isInit[1]) return;
+		isInit[1]= false;
+	}else if(_Instance == USART1){
+		if(!isInit[2]) return;
+		isInit[2]= false;
 	}
+	HAL_UART_MspDeInit(_huart);// Initialize UART if needed
 }
 // Initialize UART only once
 void UartBase::init(){
-	 // Deinitialize if instance is USART2 (can be extended for others)
-	if(_Instance == USART2){
+	 // Deinitialize if instance is USART (can be extended for others)
+	if(_Instance == USART1){
 		if(isInit[0]) return;
 		isInit[0]= true;
+		MX_USART1_UART_Init();
+	} else if(_Instance == USART2){
+		if(isInit[1]) return;
+		isInit[1]= true;
 		MX_USART2_UART_Init();
+	}
+	else if(_Instance == USART3){
+		if(isInit[2]) return;
+		isInit[2]= true;
+		MX_USART3_UART_Init();
 	}
 }
 // Blocking transmit

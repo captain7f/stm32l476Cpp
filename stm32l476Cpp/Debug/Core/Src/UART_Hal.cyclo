@@ -1,21 +1,21 @@
 ../Core/Src/UART_Hal.cpp:16:1:UartBase::UartBase(USART_TypeDef*, UART_HandleTypeDef*)	1
-../Core/Src/UART_Hal.cpp:20:1:UartBase::~UartBase()	3
-../Core/Src/UART_Hal.cpp:28:6:void UartBase::init()	3
-../Core/Src/UART_Hal.cpp:37:19:HAL_StatusTypeDef UartBase::write(uint8_t*, uint16_t, uint32_t)	1
-../Core/Src/UART_Hal.cpp:45:1:UartIT::UartIT(USART_TypeDef*, UART_HandleTypeDef*)	1
-../Core/Src/UART_Hal.cpp:57:1:UartIT::~UartIT()	1
-../Core/Src/UART_Hal.cpp:62:6:static void UartIT::TxCpltCallback(UART_HandleTypeDef*)	3
-../Core/Src/UART_Hal.cpp:70:6:static void UartIT::RxEventCallback(UART_HandleTypeDef*, uint16_t)	3
-../Core/Src/UART_Hal.cpp:78:19:virtual HAL_StatusTypeDef UartIT::write(uint8_t*, uint16_t)	2
-../Core/Src/UART_Hal.cpp:84:10:uint16_t UartIT::read(uint8_t*, uint16_t)	1
-../Core/Src/UART_Hal.cpp:88:19:virtual HAL_StatusTypeDef UartIT::start_read()	1
-../Core/Src/UART_Hal.cpp:93:6:virtual void UartIT::put(uint16_t, uint16_t)	1
-../Core/Src/UART_Hal.cpp:98:6:bool UartIT::is_tx_done()	1
-../Core/Src/UART_Hal.cpp:106:1:UartDMA::UartDMA(USART_TypeDef*, UART_HandleTypeDef*)	1
-../Core/Src/UART_Hal.cpp:110:1:UartDMA::~UartDMA()	1
-../Core/Src/UART_Hal.cpp:113:19:virtual HAL_StatusTypeDef UartDMA::write(uint8_t*, uint16_t)	3
-../Core/Src/UART_Hal.cpp:123:19:virtual HAL_StatusTypeDef UartDMA::start_read()	1
-../Core/Src/UART_Hal.cpp:129:6:virtual void UartDMA::put(uint16_t, uint16_t)	3
+../Core/Src/UART_Hal.cpp:20:1:UartBase::~UartBase()	7
+../Core/Src/UART_Hal.cpp:34:6:void UartBase::init()	7
+../Core/Src/UART_Hal.cpp:52:19:HAL_StatusTypeDef UartBase::write(uint8_t*, uint16_t, uint32_t)	1
+../Core/Src/UART_Hal.cpp:60:1:UartIT::UartIT(USART_TypeDef*, UART_HandleTypeDef*)	1
+../Core/Src/UART_Hal.cpp:72:1:UartIT::~UartIT()	1
+../Core/Src/UART_Hal.cpp:77:6:static void UartIT::TxCpltCallback(UART_HandleTypeDef*)	3
+../Core/Src/UART_Hal.cpp:85:6:static void UartIT::RxEventCallback(UART_HandleTypeDef*, uint16_t)	3
+../Core/Src/UART_Hal.cpp:93:19:virtual HAL_StatusTypeDef UartIT::write(uint8_t*, uint16_t)	2
+../Core/Src/UART_Hal.cpp:99:10:uint16_t UartIT::read(uint8_t*, uint16_t)	1
+../Core/Src/UART_Hal.cpp:103:19:virtual HAL_StatusTypeDef UartIT::start_read()	1
+../Core/Src/UART_Hal.cpp:108:6:virtual void UartIT::put(uint16_t, uint16_t)	1
+../Core/Src/UART_Hal.cpp:113:6:bool UartIT::is_tx_done()	1
+../Core/Src/UART_Hal.cpp:121:1:UartDMA::UartDMA(USART_TypeDef*, UART_HandleTypeDef*)	1
+../Core/Src/UART_Hal.cpp:125:1:UartDMA::~UartDMA()	1
+../Core/Src/UART_Hal.cpp:128:19:virtual HAL_StatusTypeDef UartDMA::write(uint8_t*, uint16_t)	3
+../Core/Src/UART_Hal.cpp:138:19:virtual HAL_StatusTypeDef UartDMA::start_read()	1
+../Core/Src/UART_Hal.cpp:144:6:virtual void UartDMA::put(uint16_t, uint16_t)	3
 ../Core/Inc/ISR_Hal.h:38:5:ISR<T, MAX>::ISR() [with T = UartIT; unsigned int MAX = 2]	2
 ../Core/Inc/CircularBuffer.h:19:5:CircularBuffer<T, N>::CircularBuffer() [with T = unsigned char; short unsigned int N = 128]	1
 ../Core/Inc/ISR_Hal.h:50:10:bool ISR<T, MAX>::add(T*) [with T = UartIT; unsigned int MAX = 2]	5
@@ -24,5 +24,5 @@
 ../Core/Inc/ISR_Hal.h:90:8:T* ISR<T, MAX>::get(size_t) const [with T = UartIT; unsigned int MAX = 2]	2
 ../Core/Inc/CircularBuffer.h:40:14:uint16_t CircularBuffer<T, N>::pull(T*, uint16_t) [with T = unsigned char; short unsigned int N = 128]	4
 ../Core/Inc/CircularBuffer.h:24:10:void CircularBuffer<T, N>::put(const T*, uint16_t) [with T = unsigned char; short unsigned int N = 128]	5
-../Core/Src/UART_Hal.cpp:147:1:void __static_initialization_and_destruction_0()	1
-../Core/Src/UART_Hal.cpp:147:1:cpp)	1
+../Core/Src/UART_Hal.cpp:162:1:void __static_initialization_and_destruction_0()	1
+../Core/Src/UART_Hal.cpp:162:1:cpp)	1

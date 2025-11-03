@@ -19,9 +19,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include <GPIO_Hal.h>
 #include "UART_Hal.h"
+#include "i2c_Hal.h"
 #include "main.h"
 #include "gpio.h"
 #include "tim_Hal.h"
+#include <stdio.h>
+#include <string.h>
 
 
 
@@ -32,6 +35,7 @@ volatile uint32_t blueB_latch= 0;
 void blueB_callback(){
 	blueB_latch++;
 }
+
 
 extern "C" int main(void)
 {
@@ -51,8 +55,8 @@ extern "C" int main(void)
   ButtonBlue.set_isr_cb(blueB_callback);
   uint32_t blueB_state= 0;
 
-  // Uart2
-//  UartBase uart2(USART2, &huart2);
+  // Uart
+  UartBase uart3(USART3, &huart3);
   UartIT uartIt2(USART2, &huart2);
 //  UartDMA uartIt2(USART1, &huart1); // DMA Uart1
 
@@ -72,7 +76,32 @@ extern "C" int main(void)
   uint64_t tick_ms_pre = 0;
   timer2.start();
 
+  // i2c
+  // i2c lm75
+  clLm75 i2clm(&hi2c1, I2C1);
+  float temperature_celsius = 0.0f;
+  if (HAL_I2C_IsDeviceReady(&hi2c1, (0x48<<1), 3, 100) == HAL_OK) {
+	  uint8_t msg[] = "✅ LM75 (0x48) bereit\r\n";
+	  uartIt2.write(msg, strlen((char*)msg));
+  } else {
+	  uint8_t msg[] = "❌ LM75 (0x48) NICHT bereit\r\n";
+      uartIt2.write(msg, strlen((char*)msg));
+  }
+  // i2c EEprom
+  clEeprom i2cEEP(&hi2c2, I2C2);
+  // Prüfen, ob EEPROM antwortet
+	if (HAL_I2C_IsDeviceReady(&hi2c2, EEPROM_ADDR_8B, 3, 100) == HAL_OK) {
+	   printf("✅ EEPROM (0x50) antwortet!\r\n");
+	} else {
+	   printf("❌ EEPROM antwortet NICHT!\r\n");
+	}
 
+   // (Optional) Teststring schreiben
+   i2cEEP.EEPROM_WriteText(0x0100, "Hello from STM32 via I2C2!");
+
+   // Gelesene Daten an PuTTY ausgeben:
+   printf("Dump ab 0x0100 (64 Bytes):\r\n");
+   i2cEEP.EEPROM_PrintBlock(0x0100, 64);
 
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -103,6 +132,7 @@ extern "C" int main(void)
 	  }
 	  memset(c,0,sizeof(c));
 
+
     // --------------Timer3------------------------
 
 	  uint32_t start_time = timer3.read();
@@ -113,6 +143,12 @@ extern "C" int main(void)
 	  }
 	  tick_ms_pre = timer2.read();
 
+	  // i2c1 lm75
+	  uint8_t msg[]= "Error\n\r";
+	  HAL_StatusTypeDef status = i2clm.ReadLM75Temperature(LM75_ADDR, &temperature_celsius);
+	  if(status == HAL_OK) printf("Temperatur (LM75): %d C\n", (uint8_t)temperature_celsius);
+//	  else printf("Temperatur (LM75) Error ");
+	  else uartIt2.write(msg, strlen((char*)msg));
   }
 
 }

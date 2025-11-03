@@ -1,10 +1,10 @@
-20:28:27 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
+02:07:35 **** Incremental Build of configuration Debug for project stm32l476Cpp ****
 make -j8 all 
 arm-none-eabi-size  stm32l476Cpp.elf 
    text	   data	    bss	    dec	    hex	filename
-  25844	     92	   2860	  28796	   707c	stm32l476Cpp.elf
+  37976	    104	   3240	  41320	   a168	stm32l476Cpp.elf
 Finished building: default.size.stdout
  
 
-20:28:27 Build Finished. 0 errors, 0 warnings. (took 308ms)
+02:07:35 Build Finished. 0 errors, 0 warnings. (took 364ms)
 
